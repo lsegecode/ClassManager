@@ -18,32 +18,32 @@ Asegúrate de tener los siguientes requisitos previos antes de instalar y ejecut
 
 ### Como instalar django
 Fuera del repositorio del proyecto crear una máquina virtual.
-` -py -m venv venv
+` -py -m venv venv`
 Puedes remplazar el último venv con el nombre que deseas agregar a la máquina virtual.
 Luego ingresar a la carpeta venv, Scripts y ejecutar el siguiente comando
-` activate
+`activate`
 Esto te indicará que estas dentro de la máquina virtual.
 Luego volver a la carpeta raíz de este proyecto e instalar django con el siguiente comando:
-` pip install Django
+`pip install Django`
 
 
 
 ## Instalación y configuración
 
 1. Clona este repositorio en tu máquina local utilizando el siguiente comando:
-` git clone https://github.com/tu_usuario/ClassManager.git
+`git clone https://github.com/tu_usuario/ClassManager.git`
 
 2. Accede al directorio del proyecto:
-` cd ClassManager
+`cd ClassManager`
 
 3. Instala las dependencias necesarias:
-` pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 4. Realiza las migraciones de la base de datos:
-`python manage.py migrate
+`python manage.py migrate`
 
 5. Inicia el servidor de desarrollo:
-`python manage.py runserver
+`python manage.py runserver`
 
 
 7. Abre tu navegador web y accede a `http://localhost:8000` para ver la aplicación en funcionamiento.
