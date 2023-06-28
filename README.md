@@ -19,9 +19,11 @@ Asegúrate de tener los siguientes requisitos previos antes de instalar y ejecut
 ### Como instalar django
 Fuera del repositorio del proyecto crear una máquina virtual.
 ` -py -m venv venv`
+
 Puedes remplazar el último venv con el nombre que deseas agregar a la máquina virtual.
 Luego ingresar a la carpeta venv, Scripts y ejecutar el siguiente comando
 `activate`
+
 Esto te indicará que estas dentro de la máquina virtual.
 Luego volver a la carpeta raíz de este proyecto e instalar django con el siguiente comando:
 `pip install Django`
