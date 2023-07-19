@@ -48,4 +48,5 @@ Contribuciones
 Las contribuciones son bienvenidas. Si encuentras algún error o tienes sugerencias de mejora, por favor crea un "Issue" o envía una solicitud de "Pull Request".
 
 Licencia
-Este proyecto está bajo la Licencia MIT.
+Este proyecto está bajo la Licencia MIT.}
+I need to add new view
