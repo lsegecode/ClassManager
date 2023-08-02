@@ -50,3 +50,5 @@ Las contribuciones son bienvenidas. Si encuentras algún error o tienes sugerenc
 Licencia
 Este proyecto está bajo la Licencia MIT.}
 I need to add new view
+
+Need to get this readme right as a structure
