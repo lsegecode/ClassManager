@@ -21,7 +21,7 @@ Crea y activa un entorno virtual:
 shell
 Copy code
 python3 -m venv env
-source env/bin/activate
+source env/bin/activateaaaaaaaa
 Instala las dependencias del proyecto:
 shell
 Copy code
