@@ -11,7 +11,7 @@ Django 3.x
 Instalación
 Clona el repositorio del proyecto:
 shell
-Copy code
+Copy codeaaaaa
 git clone https://github.com/tu-usuario/nombre-del-repositorio.git
 Accede al directorio del proyecto:
 shell
