@@ -1,56 +1,56 @@
-{% extends "./base.html" %} 
-{% block title %}Edicion Alumno {%endblock%} 
+{% extends "./base.html" %}
+{% block title %}Edicion Alumno {%endblock%}
 {% block body %}
 
-<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8">
+<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" bg-color="#80000">
   <h2>INFORMACION DE ALUMNO {{alumno.apellido_a}}, {{alumno.nombre_a}} </h2>
-<table class="table">
-  <thead>
-    <th>Tipo</th>
-    <th>Dato</th>
-  </thead>
-  <tbody>
-    <tr>
-      <td>ID</td>
-      <td>{{alumno.id_alumno}}</td>
-    </tr>
-    <tr>
-      <td>DNI</td>
-      <td>{{alumno.dni_a}}</td>
-    </tr>
-    <tr>
-      <td>CUIL</td>
-      <td>{{alumno.cuil_a}}</td>
-    </tr>    
-    <tr>
-      <td>APELLIDO</td>
-      <td>{{alumno.apellido_a}}</td>
-    </tr>    
-    <tr>
-      <td>NOMBRE</td>
-      <td>{{alumno.nombre_a}}</td>
-    </tr>
-    <tr>
-      <td>MATRICULA</td>
-      <td>{{alumno.matricula}}</td>
-    </tr>
-    <tr>
-      <td>TUTORES</td>
-      <td>{{alumno.tutores}}</td>
-    </tr>
-    <tr>
-      <td>TELEFONO</td>
-      <td>{{alumno.telefono}}</td>
-    </tr>
-    <tr>
-      <td>DIRECCION</td>
-      <td>{{alumno.direccion}}</td>
-    </tr>
-    <tr>
-      <td>FECHA DE NACIMIENTO</td>
-      <td>{{alumno.fecha_nac}}</td>
-    </tr>
-  </tbody>
-</table>
+  <table class="table table-info">
+    <thead>
+      <th>Tipo</th>
+      <th>Dato</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>{{alumno.id_alumno}}</td>
+      </tr>
+      <tr>
+        <td>DNI</td>
+        <td>{{alumno.dni_a}}</td>
+      </tr>
+      <tr>
+        <td>CUIL</td>
+        <td>{{alumno.cuil_a}}</td>
+      </tr>
+      <tr>
+        <td>APELLIDO</td>
+        <td>{{alumno.apellido_a}}</td>
+      </tr>
+      <tr>
+        <td>NOMBRE</td>
+        <td>{{alumno.nombre_a}}</td>
+      </tr>
+      <tr>
+        <td>MATRICULA</td>
+        <td>{{alumno.matricula}}</td>
+      </tr>
+      <tr>
+        <td>TUTORES</td>
+        <td>{{alumno.tutores}}</td>
+      </tr>
+      <tr>
+        <td>TELEFONO</td>
+        <td>{{alumno.telefono}}</td>
+      </tr>
+      <tr>
+        <td>DIRECCION</td>
+        <td>{{alumno.direccion}}</td>
+      </tr>
+      <tr>
+        <td>FECHA DE NACIMIENTO</td>
+        <td>{{alumno.fecha_nac}}</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 {% endblock %}
