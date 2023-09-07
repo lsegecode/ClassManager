@@ -7,7 +7,7 @@
     <h2>EDICION DE ALUMNOS</h2>
     <div class="card">
       <div class="card-body">
-        <form action="/editarAlumno/" method="POST">
+        <form action="{% url 'alumnos:editar_alumno'%}" method="POST">
           {% csrf_token %}
           <!-- CONTROL DE DJANGO PARA EVITAR EXPLOITS-->
           <div class="form-group">

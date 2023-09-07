@@ -13,7 +13,7 @@ class Alumno(models.Model):
     telefono = models.CharField(max_length=20, blank=True)
     direccion = models.CharField(max_length=50, blank=True)
     fecha_nac = models.DateField()
-    copiaDNI_A = models.ImageField(upload_to='alumnado/images/', blank=True)
+    copiaDNI_A = ImageField(upload_to='alumnado/images/', blank=True)
 
     def __str__(self):
         texto = "{0} {1}({2})"

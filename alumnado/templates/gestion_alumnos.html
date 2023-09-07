@@ -1,45 +1,106 @@
-{% extends "./base.html" %} {% block title %}GESTION DE ALUMNOS{%endblock%}
-{% block body %}
+{% extends "./base.html" %} {% block title %}GESTION DE ALUMNOS{%endblock%} 
+{% block body %} {% if user.is_authenticated %}
 <div class="row">
   <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
     <h2>GESTION DE ALUMNOS</h2>
     <div class="card">
       <div class="card-body">
-        <form action="/registrarAlumno/" method="POST">
+        <form action="{% url 'alumnos:registrar_alumno'%}" method="POST">
           {% csrf_token %}
           <!-- CONTROL DE DJANGO PARA EVITAR EXPLOITS-->
           <div class="form-group">
-            <input type="text" id="dni_a" name="dni_a" class="form-control" placeholder="DNI" maxlength="9" required />
+            <input
+              type="text"
+              id="dni_a"
+              name="dni_a"
+              class="form-control"
+              placeholder="DNI"
+              maxlength="9"
+              required
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="cuil_a" name="cuil_a" class="form-control" placeholder="CUIL" maxlength="15" />
+            <input
+              type="text"
+              id="cuil_a"
+              name="cuil_a"
+              class="form-control"
+              placeholder="CUIL"
+              maxlength="15"
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="apellido_a" name="apellido_a" class="form-control" placeholder="APELLIDO"
-              maxlength="50" required />
+            <input
+              type="text"
+              id="apellido_a"
+              name="apellido_a"
+              class="form-control"
+              placeholder="APELLIDO"
+              maxlength="50"
+              required
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="nombre_a" name="nombre_a" class="form-control" placeholder="NOMBRE" maxlength="50"
-              required />
+            <input
+              type="text"
+              id="nombre_a"
+              name="nombre_a"
+              class="form-control"
+              placeholder="NOMBRE"
+              maxlength="50"
+              required
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="matricula" name="matricula" class="form-control" placeholder="MATRICULA"
-              minlength="1" maxlength="10" />
+            <input
+              type="text"
+              id="matricula"
+              name="matricula"
+              class="form-control"
+              placeholder="MATRICULA"
+              minlength="1"
+              maxlength="10"
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="tutores" name="tutores" class="form-control" placeholder="TUTOR" minlength="1"
-              maxlength="100" />
+            <input
+              type="text"
+              id="tutores"
+              name="tutores"
+              class="form-control"
+              placeholder="TUTOR"
+              minlength="1"
+              maxlength="100"
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="telefono" name="telefono" class="form-control" placeholder="TELEFONO"
-              maxlength="20" />
+            <input
+              type="text"
+              id="telefono"
+              name="telefono"
+              class="form-control"
+              placeholder="TELEFONO"
+              maxlength="20"
+            />
           </div>
           <div class="form-group">
-            <input type="text" id="direccion" name="direccion" class="form-control" placeholder="DIRECCION"
-              maxlength="50" />
+            <input
+              type="text"
+              id="direccion"
+              name="direccion"
+              class="form-control"
+              placeholder="DIRECCION"
+              maxlength="50"
+            />
           </div>
           <div class="form-group">
-            <input type="date" id="fecha_nac" name="fecha_nac" class="form-control" placeholder="FECHA NACIMIENTO" />
+            <input
+              type="date"
+              id="fecha_nac"
+              name="fecha_nac"
+              class="form-control"
+              placeholder="FECHA NACIMIENTO"
+            />
           </div>
           <div class="form-group">
             <button type="submit" class="btn btn-success btn-block text-white">
@@ -73,13 +134,25 @@
             <td>{{alumno.nombre_a}}</td>
             <td>{{alumno.dni_a}}</td>
             <td>
-              <a href="/verAlumno/{{alumno.id_alumno}}" class="btn btn-success">Ver</a>
+              <a
+                href="{% url 'alumnos:ver_alumno' alumno.id_alumno%}"
+                class="btn btn-success"
+                >Ver</a
+              >
             </td>
             <td>
-              <a href="/edicionAlumno/{{alumno.id_alumno}}" class="btn btn-info">Editar</a>
+              <a
+                href="{% url 'alumnos:edicion_alumno' alumno.id_alumno%}"
+                class="btn btn-info"
+                >Editar</a
+              >
             </td>
             <td>
-              <a href="/eliminarAlumno/{{alumno.id_alumno}}" class="btn btn-danger">Eliminar</a>
+              <a
+                href="{% url 'alumnos:eliminar_alumno' alumno.id_alumno%}"
+                class="btn btn-danger"
+                >Eliminar</a
+              >
             </td>
           </tr>
           {% endfor %}
@@ -88,5 +161,26 @@
     </div>
   </div>
 </div>
+{% else %} Registrarse:
+<a href="{%url 'index1:index'%}"
+  ><button class="btn btn-warning">      <svg 
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-box-arrow-in-right align-items-center"
+    viewBox="0 0 16 16"
+  >
+    <path
+      fill-rule="evenodd"
+      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"
+    />
+    <path
+      fill-rule="evenodd"
+      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
+    /></svg
+  > LOGIN</button></a
+>
 
+{% endif %} 
 {% endblock %}

@@ -2,10 +2,6 @@ from django.shortcuts import render, redirect
 from .models import Alumno
 from django.contrib import messages
 
-
-def index(request):
-    return render(request, "index.html")
-
 def alumnos(request):
     alumnos = Alumno.objects.all()
 
@@ -72,7 +68,6 @@ def editarAlumno(request):
 
     return redirect('/alumnos')
     
-
 def eliminarAlumno(request, id_alumno):
     alumno = Alumno.objects.get(id_alumno=id_alumno)
     alumno.delete()
