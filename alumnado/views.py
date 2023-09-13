@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Alumno
 from django.contrib import messages
 
+
 def alumnos(request):
     alumnos = Alumno.objects.all()
 
@@ -73,3 +74,8 @@ def eliminarAlumno(request, id_alumno):
     alumno.delete()
 
     return redirect('/alumnos')
+
+def registrarAsistencia(request):
+    asistencias = Asistencia.objects.all()
+
+    return render(request, "gestion_alumnos.html", {"asistencias": asistencias})
