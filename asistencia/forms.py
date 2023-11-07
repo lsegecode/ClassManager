@@ -17,3 +17,8 @@ class AsistenciaForm(forms.ModelForm):
     class Meta:
         model = Asistencia
         fields = ['id_alumno', 'fechaA', 'condicion', 'cantidadA', 'turno', 'reintegrado', 'evento']
+    
+class AsistenciaFormUpdate(forms.ModelForm):
+    class Meta:
+        model = Asistencia
+        fields = ['id_alumno', 'fechaA', 'condicion', 'cantidadA', 'turno', 'reintegrado', 'evento']

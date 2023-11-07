@@ -1,0 +1,46 @@
+{% extends "./base.html" %} 
+
+{% block title %} 
+{% block new_title%} 
+<!--- ACA VA EL TITULO
+EL PRIMER BLOCK ES LA HERENCIA DE BASE
+EL SEGUNDO ES EL QUE VA EN LOS HTML INDIVIDUALES.-->
+{%endblock%}
+{%endblock%}
+
+{% block body %}
+
+<div class="row">
+  <div class="col-xl-4 shadow p-3 mb-5 bg-white rounded">
+    <h2>{% block titulo_formulario %} {% endblock %}</h2>
+    <div class="card-body">
+        <form action="" method="POST">
+          {% block formulario %} {% endblock %}
+          <button type="submit" class="btn btn-success btn-block text-white">
+            Guardar
+          </button>
+    </div>
+  </div>
+  <!-- --------------------------------------------------------------->
+  <div class="col-xl-8 shadow p-3 mb-5 bg-white rounded">
+    <h1>{% block titulo_informacion%} {%endblock%}</h1>
+    <div class="table-responsive py-2">
+      <table class="table table-striped table-hover ">
+        <thead>
+          <tr>
+            {% block titulo_columnas %} {%endblock%}
+            <th colspan="3">
+              <center>MENU</center>
+            </th>
+          </tr>
+        </thead>
+
+        <tbody>
+            {% block contenido_tabla%} {% endblock %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

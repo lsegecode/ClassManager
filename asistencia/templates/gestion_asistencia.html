@@ -1,106 +1,92 @@
-{% extends "./base.html" %} {% block title %}GESTION DE ASISTENCIA{%endblock%}
-{% block body %} {% if user.is_authenticated %} {% load crispy_forms_tags %}
-<div class="row">
-  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 bg-info">
-    <h2>GESTION DE ASISTENCIA</h2>
-    <div class="card bg-info">
-      <div class="card-body bg-info">
-        <form action="" method="POST">
-          {% csrf_token %} 
-          {{ asistencia_form|crispy}}
+{% extends "./gestionBase.html" %} 
+{% block new_title%} GESTION DE ASISTENCIA{%endblock%} 
+{% block titulo_formulario %} CARGA DE ASISTENCIA {% endblock %} 
 
-          
-            <button type="submit" class="btn btn-success btn-block text-white">
-              Guardar
+{% block formulario %} 
+{% csrf_token %} {% load crispy_forms_tags %} 
+{{ asistencia_form|crispy}}
+{% endblock %} 
+
+{% block titulo_informacion%} INFORMACION DE ASISTENCIA {%endblock%} 
+
+{% block titulo_columnas %}
+<th>FECHA</th>
+<th>HORA</th>
+<th>ID ALUMNO</th>
+<th>turno</th>
+{%endblock%} 
+
+{% block contenido_tabla%} 
+{% for asisten in asistencia%}
+<tr>
+  <td>{{asisten.fechaA}}</td>
+  <td>{{asisten.horaA}}</td>
+  <td>{{asisten.id_alumno}}</td>
+  <td>{{asisten.turno}}</td>
+  <td>
+    <a
+      href="{% url 'asistencia:ver_asistencia' asisten.id_asistencia%}"
+      class="btn btn-success"
+      >Ver</a
+    >
+  </td>
+  <td>
+    <a
+      href="{% url 'asistencia:editar_asistencia' asisten.id_asistencia%}"
+      class="btn btn-info"
+      >Editar</a
+    >
+  </td>
+  <td>
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Eliminar
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Confirmar Eliminación
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        </form>
-        {% if 'ok' in request.GET %}
-        <div class="alert alert-success mt-5" role="alert">
-          <strong>El mensaje se ha enviado correctamente</strong>
-      </div>
-        {% endif %}
-
-        {% if 'error' in request.GET %}
-        <div class="alert alert-danger mt-5" role="alert">
-            <strong>El mensaje no ha podido ser enviado. Por favor, intente más tarde</strong>
+          <div class="modal-body">¿Desea eliminar esta Asistencia?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              href="{% url 'asistencia:eliminar_asistencia' asisten.id_asistencia%}"
+              class="btn btn-danger"
+              >Eliminar</a
+            >
+          </div>
         </div>
-    {% endif %}
       </div>
     </div>
-  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 bg-info">
-    <h1>INFORMACION DE ASISTENCIA</h1>
-    <div class="table-responsive py-2">
-      <table class="table table-striped table-hover">
-        <thead>
-          <tr>
-            <th>FECHA</th>
-            <th>HORA</th>
-            <th>ID ALUMNO</th>
-            <th>turno</th>
-            <th colspan="3">
-              <center>MENU</center>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for asisten in asistencia%}
-          <tr>
-            <td>{{asisten.fechaA}}</td>
-            <td>{{asisten.horaA}}</td>
-            <td>{{asisten.id_alumno}}</td>
-            <td>{{asisten.turno}}</td>
-            <td>
-              <a
-                href=""
-                class="btn btn-success"
-                >Ver</a
-              >
-            </td>
-            <td>
-              <a
-                href=""
-                class="btn btn-info"
-                >Editar</a
-              >
-            </td>
-            <td>
-              <a
-                href=""
-                class="btn btn-danger"
-                >Eliminar</a
-              >
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
-{% else %} Registrarse:
-<a href="{%url 'index1:index'%}"
-  ><button class="btn btn-warning">
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="16"
-      height="16"
-      fill="currentColor"
-      class="bi bi-box-arrow-in-right align-items-center"
-      viewBox="0 0 16 16"
-    >
-      <path
-        fill-rule="evenodd"
-        d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"
-      />
-      <path
-        fill-rule="evenodd"
-        d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-      />
-    </svg>
-    LOGIN
-  </button></a
->
-
-{% endif %} {% endblock %}
+  </td>
+</tr>
+{% endfor %} {% endblock %}

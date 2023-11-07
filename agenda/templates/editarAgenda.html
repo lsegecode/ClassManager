@@ -1,0 +1,14 @@
+{% extends "./base.html" %} 
+{% block title %}Edicion AGENDA {%endblock%} 
+{% block body %}
+{% load crispy_forms_tags %}
+<h2>EDICION DE AGENDA</h2>
+
+<form action="" method="POST">
+{% csrf_token %} 
+{{ agenda_form_update|crispy}}
+<button type="submit" class="btn btn-success btn-block text-white">
+  Guardar
+</button>
+</form>
+{% endblock %}

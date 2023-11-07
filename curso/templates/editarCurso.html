@@ -1,0 +1,14 @@
+{% extends "./base.html" %} 
+{% block title %}Edicion CURSO {%endblock%} 
+{% block body %}
+{% load crispy_forms_tags %}
+<h2>EDICION DE curso</h2>
+
+<form action="" method="POST">
+{% csrf_token %} 
+{{ Ecurso_form|crispy}}
+<button type="submit" class="btn btn-success btn-block text-white">
+  Guardar
+</button>
+</form>
+{% endblock %}

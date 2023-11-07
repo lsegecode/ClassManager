@@ -1,0 +1,14 @@
+{% extends "./base.html" %} 
+{% block title %}Edicion ASISTENCIA {%endblock%} 
+{% block body %}
+{% load crispy_forms_tags %}
+<h2>EDICION DE ASISTENCIA</h2>
+
+<form action="" method="POST">
+{% csrf_token %} 
+{{ Easistencia_form|crispy}}
+<button type="submit" class="btn btn-success btn-block text-white">
+  Guardar
+</button>
+</form>
+{% endblock %}

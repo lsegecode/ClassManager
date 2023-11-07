@@ -1,186 +1,92 @@
-{% extends "./base.html" %} {% block title %}GESTION DE ALUMNOS{%endblock%} 
-{% block body %} {% if user.is_authenticated %}
-<div class="row">
-  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 bg-info">
-    <h2>GESTION DE ALUMNOS</h2>
-    <div class="card bg-info">
-      <div class="card-body bg-info">
-        <form action="{% url 'alumnos:registrar_alumno'%}" method="POST">
-          {% csrf_token %}
-          <!-- CONTROL DE DJANGO PARA EVITAR EXPLOITS-->
-          <div class="form-group">
-            <input
-              type="text"
-              id="dni_a"
-              name="dni_a"
-              class="form-control"
-              placeholder="DNI"
-              maxlength="9"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="cuil_a"
-              name="cuil_a"
-              class="form-control"
-              placeholder="CUIL"
-              maxlength="15"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="apellido_a"
-              name="apellido_a"
-              class="form-control"
-              placeholder="APELLIDO"
-              maxlength="50"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="nombre_a"
-              name="nombre_a"
-              class="form-control"
-              placeholder="NOMBRE"
-              maxlength="50"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="matricula"
-              name="matricula"
-              class="form-control"
-              placeholder="MATRICULA"
-              minlength="1"
-              maxlength="10"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="tutores"
-              name="tutores"
-              class="form-control"
-              placeholder="TUTOR"
-              minlength="1"
-              maxlength="100"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="telefono"
-              name="telefono"
-              class="form-control"
-              placeholder="TELEFONO"
-              maxlength="20"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="text"
-              id="direccion"
-              name="direccion"
-              class="form-control"
-              placeholder="DIRECCION"
-              maxlength="50"
-            />
-          </div>
-          <div class="form-group">
-            <input
-              type="date"
-              id="fecha_nac"
-              name="fecha_nac"
-              class="form-control"
-              placeholder="FECHA NACIMIENTO"
-            />
-          </div>
-          <div class="form-group">
-            <button type="submit" class="btn btn-success btn-block text-white">
-              Guardar
+{% extends "./gestionBase.html" %} 
+{% block new_title%} GESTION ALUMNOS{%endblock%} 
+{% block titulo_formulario %} CARGA DE ALUMNOS {% endblock %} 
+
+{% block formulario %} 
+{% csrf_token %} {% load crispy_forms_tags %} 
+{{alumnos_form|crispy}} 
+{% endblock %} 
+
+{% block titulo_informacion%} INFORMACION DE ALUMNOS {%endblock%} 
+
+{% block titulo_columnas %}
+<th>Matricula</th>
+<th>Apellido</th>
+<th>Nombre</th>
+<th>DNI</th>
+{%endblock%} 
+
+{% block contenido_tabla%} 
+{% for alumno in alumnos%}
+<tr>
+  <td>{{alumno.matricula}}</td>
+  <td>{{alumno.apellido_a}}</td>
+  <td>{{alumno.nombre_a}}</td>
+  <td>{{alumno.dni_a}}</td>
+  <td>
+    <a
+      href="{% url 'alumnos:ver_alumno' alumno.id_alumno%}"
+      class="btn btn-success"
+      >Ver</a
+    >
+  </td>
+  <td>
+    <a
+      href="{% url 'alumnos:editar_alumno' alumno.id_alumno%}"
+      class="btn btn-info"
+      >Editar</a
+    >
+  </td>
+  <td>
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Eliminar
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Confirmar Eliminación
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
             </button>
           </div>
-        </form>
+          <div class="modal-body">¿Desea eliminar este alumno?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <a
+              href="{% url 'alumnos:eliminar_alumno' alumno.id_alumno%}"
+              class="btn btn-danger"
+              >Eliminar</a
+            >
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 bg-info">
-    <h1>INFORMACION DE ALUMNOS</h1>
-    <div class="table-responsive py-2">
-      <table class="table table-striped table-hover ">
-        <thead>
-          <tr>
-            <th>Matricula</th>
-            <th>Apellido</th>
-            <th>Nombre</th>
-            <th>DNI</th>
-            <th colspan="3">
-              <center>MENU</center>
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for alumno in alumnos%}
-          <tr>
-            <td>{{alumno.matricula}}</td>
-            <td>{{alumno.apellido_a}}</td>
-            <td>{{alumno.nombre_a}}</td>
-            <td>{{alumno.dni_a}}</td>
-            <td>
-              <a
-                href="{% url 'alumnos:ver_alumno' alumno.id_alumno%}"
-                class="btn btn-success"
-                >Ver</a
-              >
-            </td>
-            <td>
-              <a
-                href="{% url 'alumnos:edicion_alumno' alumno.id_alumno%}"
-                class="btn btn-info"
-                >Editar</a
-              >
-            </td>
-            <td>
-              <a
-                href="{% url 'alumnos:eliminar_alumno' alumno.id_alumno%}"
-                class="btn btn-danger"
-                >Eliminar</a
-              >
-            </td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-{% else %} Registrarse:
-<a href="{%url 'index1:index'%}"
-  ><button class="btn btn-warning">      <svg 
-    xmlns="http://www.w3.org/2000/svg"
-    width="16"
-    height="16"
-    fill="currentColor"
-    class="bi bi-box-arrow-in-right align-items-center"
-    viewBox="0 0 16 16"
-  >
-    <path
-      fill-rule="evenodd"
-      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0v-2z"
-    />
-    <path
-      fill-rule="evenodd"
-      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"
-    /></svg
-  > LOGIN</button></a
->
-
-{% endif %} 
-{% endblock %}
+  </td>
+</tr>
+{% endfor %} {% endblock %}

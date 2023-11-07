@@ -2,7 +2,7 @@ from django.db import models
 from alumnado import models as alumnado_models
 
 options = [
-    [0, 'Regultar'],
+    [0, 'Regular'],
     [1, 'Semipresencial'],
     [2, 'Libre'],
 ]

@@ -1,0 +1,28 @@
+{% extends "./base.html" %}
+{% block title %}Edicion MATERIA {%endblock%}
+{% block body %}
+
+<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" bg-color="#80000">
+  <h2>INFORMACION DE MATERIA </h2>
+  <table class="table table-info">
+    <thead>
+      <th>Tipo</th>
+      <th>Dato</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>{{materia.id_materia}}</td>
+      </tr>
+      <tr>
+        <td>NOMBRE</td>
+        <td>{{materia.nombreMateria}}</td>
+      </tr>
+      <tr>
+        <td>Id especialidad</td>
+        <td>{{materia.id_especialidad}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

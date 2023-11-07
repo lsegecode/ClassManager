@@ -1,0 +1,15 @@
+{% extends "./base.html" %} 
+{% block title %}Edicion PERSONAL {%endblock%} 
+{% block body %}
+{% load crispy_forms_tags %}
+<h2>EDICION DE PERSONAL</h2>
+
+<form action="" method="POST">
+{% csrf_token %} 
+{{ personal_form_update|crispy}}
+<button type="submit" class="btn btn-success btn-block text-white">
+  Guardar
+</button>
+</form>
+
+{% endblock %}

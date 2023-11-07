@@ -1,0 +1,44 @@
+{% extends "./base.html" %}
+{% block title %}Vision Notas {%endblock%}
+{% block body %}
+
+<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" bg-color="#80000">
+  <h2>INFORMACION DE NOTAS </h2>
+  <table class="table table-info">
+    <thead>
+      <th>Tipo</th>
+      <th>Dato</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>{{notas.id_nota}}</td>
+      </tr>
+      <tr>
+        <td>VALOR</td>
+        <td>{{notas.valor}}</td>
+      </tr>
+      <tr>
+        <td>FECHA DE LA NOTA</td>
+        <td>{{notas.fechaNota}}</td>
+      </tr>
+      <tr>
+        <td>INSTANCIA</td>
+        <td>{{notas.instancia}}</td>
+      </tr>
+      <tr>
+        <td>AÑO CURSADA</td>
+        <td>{{notas.AnnioCursada}}</td>
+      </tr>
+      <tr>
+        <td>MATERIA</td>
+        <td>{{notas.id_materia}}</td>
+      </tr>
+      <tr>
+        <td>id_alumno</td>
+        <td>{{notas.id_alumno}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

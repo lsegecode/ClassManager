@@ -1,0 +1,92 @@
+{% extends "./gestionBase.html" %} 
+{% block new_title%} GESTION DE AGENDA{%endblock%} 
+{% block titulo_formulario %} CARGA DE AGENDA {% endblock %} 
+
+{% block formulario %} 
+{% csrf_token %} {% load crispy_forms_tags %} 
+{{ agenda_form|crispy}}
+{% endblock %} 
+
+{% block titulo_informacion%} INFORMACION DE AGENDA {%endblock%} 
+
+{% block titulo_columnas %}
+<th>ID</th>
+<th>FFCHA Y HORA</th>
+<th>DESCRIPCION</th>
+<th>PERSONAL</th>
+{%endblock%} 
+
+{% block contenido_tabla%} 
+{% for age in agenda%}
+<tr>
+    <td>{{age.id_agenda}}</td>
+    <td>{{age.fecha_hora}}</td>
+    <td>{{age.descripcion}}</td>
+    <td>{{age.id_personal}}</td>
+  <td>
+    <a
+      href="{% url 'agenda:ver_agenda' age.id_agenda%}"
+      class="btn btn-success"
+      >Ver</a
+    >
+  </td>
+  <td>
+    <a
+      href="{% url 'agenda:editar_agenda' age.id_agenda%}"
+      class="btn btn-info"
+      >Editar</a
+    >
+  </td>
+  <td>
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Eliminar
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Confirmar Eliminación
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">¿Desea eliminar esta Agenda?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              href="{% url 'agenda:eliminar_agenda' age.id_agenda%}"
+              class="btn btn-danger"
+              >Eliminar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endfor %} {% endblock %}

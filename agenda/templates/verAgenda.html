@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+{% block title %}Edicion AGENDA {%endblock%}
+{% block body %}
+
+<div class="col-sm-12 col-md-6 col-lg-8 col-xl-8" bg-color="#80000">
+  <h2>INFORMACION DE AGENDA </h2>
+  <table class="table table-info">
+    <thead>
+      <th>Tipo</th>
+      <th>Dato</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>ID</td>
+        <td>{{agenda.id_agenda}}</td>
+      </tr>
+      <tr>
+        <td>FECHA Y HORA</td>
+        <td>{{agenda.fecha_hora}}</td>
+      </tr>
+      <tr>
+        <td>DESCRIPCION</td>
+        <td>{{agenda.descripcion}}</td>
+      </tr>
+      <tr>
+        <td>ID PERSONAL</td>
+        <td>{{agenda.id_personal}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{% endblock %}

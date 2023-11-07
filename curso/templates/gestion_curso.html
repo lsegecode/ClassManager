@@ -1,0 +1,90 @@
+{% extends "./gestionBase.html" %} 
+{% block new_title%} GESTION DE CURSOS{%endblock%} 
+{% block titulo_formulario %} CARGA DE CURSOS {% endblock %} 
+
+{% block formulario %} 
+{% csrf_token %} {% load crispy_forms_tags %} 
+{{ curso_form|crispy}}
+{% endblock %} 
+
+{% block titulo_informacion%} INFORMACION DE CURSOS {%endblock%} 
+
+{% block titulo_columnas %}
+<th>id_curso</th>
+<th>AÑO</th>
+<th>Division</th>
+{%endblock%} 
+
+{% block contenido_tabla%} 
+{% for cur in curso%}
+<tr>
+  <td>{{cur.id_curso}}</td>
+  <td>{{cur.Annio}}</td>
+  <td>{{cur.Division}}</td>
+  <td>
+    <a
+      href="{% url 'curso:ver_curso' cur.id_curso%}"
+      class="btn btn-success"
+      >Ver</a
+    >
+  </td>
+  <td>
+    <a
+      href="{% url 'curso:editar_curso' cur.id_curso%}"
+      class="btn btn-info"
+      >Editar</a
+    >
+  </td>
+  <td>
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-toggle="modal"
+      data-target="#exampleModal"
+    >
+      Eliminar
+    </button>
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Confirmar Eliminación
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">¿Desea eliminar este Curso?</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Cerrar
+            </button>
+            <a
+              href="{% url 'curso:eliminar_curso' cur.id_curso%}"
+              class="btn btn-danger"
+              >Eliminar</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </td>
+</tr>
+{% endfor %} {% endblock %}

@@ -1,0 +1,113 @@
+{% extends "./base.html" %} {% block title %}GESTION DE NOTAS{%endblock%} 
+{% block body %}{% load crispy_forms_tags %}
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4 bg-info">
+    <h2>GESTION DE NOTAS</h2>
+    <div class="card bg-info">
+      <div class="card-body bg-info">
+        <form action="" method="POST">
+          {% csrf_token %} {{ notas_form|crispy}}
+
+          <button type="submit" class="btn btn-success btn-block text-white">
+            Guardar
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-lg-8 col-xl-8 bg-info">
+    <h1>INFORMACION DE NOTAS</h1>
+    <div class="table-responsive py-2">
+      <table class="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>id_nota</th>
+            <th>VALOR</th>
+            <th>id_materia</th>
+            <th>id_alumno</th>
+            <th colspan="3">
+              <center>MENU</center>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for nota in notas%}
+          <tr>
+            <td>{{nota.id_nota}}</td>
+            <td>{{nota.valor}}</td>
+            <td>{{nota.id_materia}}</td>
+            <td>{{nota.id_alumno}}</td>
+            <td>
+              <a
+                href="{% url 'notas:ver_nota' nota.id_nota%}"
+                class="btn btn-success"
+                >Ver</a
+              >
+            </td>
+            <td>
+              <a
+                href="{% url 'notas:editar_nota' nota.id_nota%}"
+                class="btn btn-info"
+                >Editar</a
+              >
+            </td>
+            <td>
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-toggle="modal"
+                data-target="#exampleModal"
+              >
+                Eliminar
+              </button>
+              <div
+                class="modal fade"
+                id="exampleModal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">
+                        Confirmar Eliminación
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">¿Desea eliminar esta Nota?</div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Close
+                      </button>
+                      <a
+                        href="{% url 'notas:eliminar_nota' nota.id_nota%}"
+                        class="btn btn-danger"
+                        >Eliminar</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
